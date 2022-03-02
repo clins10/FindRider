@@ -27,9 +27,9 @@ import React, { useEffect, useState } from "react";
 
 export default function Home({ rides, user }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  let [nearest, setNearest] = useState(rides);
-  const [pastrides, setPastrides] = useState(rides);
-  const [upComing, setUpComing] = useState(rides);
+  const [nearest, setNearest] = useState([]);
+  const [pastrides, setPastrides] = useState([]);
+  const [upComing, setUpComing] = useState([]);
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
   const [tab, setTab] = useState("nearest");
@@ -73,7 +73,7 @@ export default function Home({ rides, user }) {
 
   //PAST RIDE ENDS
 
-  let near = nearest.filter((ride) => {
+  let near = rides.filter((ride) => {
     return ride.station_path.some((num) => {
       return num > user.station_code;
     });
@@ -95,7 +95,7 @@ export default function Home({ rides, user }) {
 
   // sorting the nearest so the closest rides show up first
 
-  nearest = near.sort(
+  near = near.sort(
     (lowest_distance, highest_distance) =>
       lowest_distance.distance - highest_distance.distance
   );
@@ -106,15 +106,15 @@ export default function Home({ rides, user }) {
     if (value.length && state.length) {
       if (tab === "nearest") {
         setCity(value);
-        nearest = rides.filter((ride) => {
-          return ride.city === value && ride.state === state;
+        let filteredNear = near.filter((ride) => {
+          return ride.city == value && ride.state == state;
         });
 
-        setNearest(nearest);
+        setNearest(filteredNear);
       } else if (tab === "past") {
         setCity(value);
-        let pasts = pastrides.filter((ride) => {
-          return ride.city === value && ride.state === state;
+        let pasts = get_pastrides.filter((ride) => {
+          return ride.city == value && ride.state == state;
         });
         // alert("got here")
         setPastrides(pasts);
@@ -127,17 +127,17 @@ export default function Home({ rides, user }) {
       //   setUpComing(upcome);
       // }
     } else if (value.length && !state.length) {
-      if (tab === "nearest") {
+      if (tab == "nearest") {
         setCity(value);
-        nearest = rides.filter((ride) => {
-          return ride.city === value;
+        let filteredNear = near.filter((ride) => {
+          return ride.city == value;
         });
 
-        setNearest(nearest);
-      } else if (tab === "past") {
+        setNearest(filteredNear);
+      } else if (tab == "past") {
         setCity(value);
-        let pasts = pastrides.filter((ride) => {
-          return ride.city === value;
+        let pasts = get_pastrides.filter((ride) => {
+          return ride.city == value;
         });
         // alert("got here")
         setPastrides(pasts);
@@ -150,16 +150,16 @@ export default function Home({ rides, user }) {
       //   setUpComing(upcome);
       // }
     } else if (!value.length && state.length) {
-      if (tab === "nearest") {
+      if (tab == "nearest") {
         setCity("");
-        nearest = rides.filter((ride) => {
-          return ride.state === state;
+        let filteredNear = near.filter((ride) => {
+          return ride.state == state;
         });
-        setNearest(nearest);
-      } else if (tab === "past") {
+        setNearest(filteredNear);
+      } else if (tab == "past") {
         setCity("");
-        let pasts = pastrides.filter((ride) => {
-          return ride.state === state;
+        let pasts = get_pastrides.filter((ride) => {
+          return ride.state == state;
         });
         setPastrides(pasts);
         // alert("no city, but there is state")
@@ -172,29 +172,28 @@ export default function Home({ rides, user }) {
       //   setUpComing(upcome);
       // }
     } else {
+      setCity("")
+      setState("")
       setNearest(nearest);
       setPastrides(get_pastrides);
       setUpComing(get_upcomingRides);
     }
-
-    console.log("length of city value", value.length);
-    console.log("length of state value", state.length);
   };
 
   const handleState = (e) => {
     let value = e.target.value;
 
     if (value.length && city.length) {
-      if (tab === "nearest") {
+      if (tab == "nearest") {
         setState(value);
-        nearest = rides.filter((ride) => {
-          return ride.state === value && ride.city === city;
+        let filteredNear = near.filter((ride) => {
+          return ride.state == value && ride.city == city;
         });
-        setNearest(nearest);
-      } else if (tab === "past") {
+        setNearest(filteredNear);
+      } else if (tab == "past") {
         setState(value);
-        let pasts = pastrides.filter((ride) => {
-          return ride.state === value && ride.city === city;
+        let pasts = get_pastrides.filter((ride) => {
+          return ride.state == value && ride.city == city;
         });
         setPastrides(pasts);
       }
@@ -206,16 +205,16 @@ export default function Home({ rides, user }) {
       //   setUpComing(upcome);
       // }
     } else if (value.length && !city.length) {
-      if (tab === "nearest") {
+      if (tab == "nearest") {
         setState(value);
-        nearest = rides.filter((ride) => {
-          return ride.state === value;
+        let filteredNear = near.filter((ride) => {
+          return ride.state == value;
         });
-        setNearest(nearest);
-      } else if (tab === "past") {
+        setNearest(filteredNear);
+      } else if (tab == "past") {
         setState(value);
-        let pasts = pastrides.filter((ride) => {
-          return ride.state === value;
+        let pasts = get_pastrides.filter((ride) => {
+          return ride.state == value;
         });
         setPastrides(pasts);
       }
@@ -227,38 +226,39 @@ export default function Home({ rides, user }) {
       //   setUpComing(upcome);
       // }
     } else if (!value.length && city.length) {
-      if (tab === "nearest") {
+      if (tab == "nearest") {
         setState("");
-        nearest = rides.filter((ride) => {
-          return ride.city === city;
+        let filteredNear = near.filter((ride) => {
+          return ride.city == city;
         });
-        setNearest(nearest);
-      } else if (tab === "past") {
+        setNearest(filteredNear);
+      } else if (tab == "past") {
         setState("");
-        let pasts = pastrides.filter((ride) => {
-          return ride.city === city;
+        let pasts = get_pastrides.filter((ride) => {
+          return ride.city == city;
         });
         setPastrides(pasts);
       } else {
         setState("");
         let upcome = upComing.filter((ride) => {
-          return ride.city === city;
+          return ride.city == city;
         });
         setUpComing(upcome);
       }
     } else {
-      setNearest(rides);
+      setCity("")
+      setState("")
+      setNearest(nearest);
       setPastrides(get_pastrides);
       setUpComing(get_upcomingRides);
     }
 
-    console.log("length of city value", city.length);
-    console.log("length of state value", value.length);
   };
 
   // console.log("tab", tab);
 
   useEffect(() => {
+    setNearest(near)
     setPastrides(get_pastrides);
     setUpComing(get_upcomingRides);
   }, [rides]);
@@ -285,8 +285,6 @@ export default function Home({ rides, user }) {
         <HStack>
           <Text color="white" fontSize={"20px"} fontWeight="bold">
             {user.name}
-
-            {/* {user.station_code} */}
           </Text>
           <WrapItem>
             <Avatar size={"sm"} src={user.url} />
