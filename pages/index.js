@@ -495,7 +495,7 @@ export default function Home({ rides, user }) {
   );
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const res = await fetch("https://assessment.api.vweb.app/rides");
   const resUser = await fetch("https://assessment.api.vweb.app/user");
   const rides = await res.json();
