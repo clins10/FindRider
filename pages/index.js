@@ -34,42 +34,42 @@ export default function Home({ rides, user }) {
   const [city, setCity] = useState("");
   const [tab, setTab] = useState("nearest");
 
-  let date = new Date().getTime();
+  
 
-  let get_upcomingRides = rides.filter((ride) => {
-    return new Date(ride.date).valueOf() > date;
-  });
+  // let get_upcomingRides = rides.filter((ride) => {
+  //   return new Date(ride.date).valueOf() > date;
+  // });
 
-  get_upcomingRides = get_upcomingRides.map((ride) => {
-    //removing paths that are lesser than user's station code
-    let stationPath = ride.station_path.filter((path) => {
-      return path >= user.station_code;
-    });
+  // get_upcomingRides = get_upcomingRides.map((ride) => {
+  //   //removing paths that are lesser than user's station code
+  //   let stationPath = ride.station_path.filter((path) => {
+  //     return path >= user.station_code;
+  //   });
 
-    let distance = stationPath[0] - user.station_code;
-    return {
-      distance: distance,
-      ...ride,
-    };
-  });
+  //   let distance = stationPath[0] - user.station_code;
+  //   return {
+  //     distance: distance,
+  //     ...ride,
+  //   };
+  // });
 
   //PAST RIDE STARTS
-  let get_pastrides = rides.filter((ride) => {
-    return new Date(ride.date).valueOf() < date;
-  });
+  // let get_pastrides = rides.filter((ride) => {
+  //   return new Date(ride.date).valueOf() < date;
+  // });
 
-  get_pastrides = get_pastrides.map((ride) => {
-    //removing paths that are lesser than user's station code
-    let stationPath = ride.station_path.filter((path) => {
-      return path >= user.station_code;
-    });
+  // get_pastrides = get_pastrides.map((ride) => {
+  //   //removing paths that are lesser than user's station code
+  //   let stationPath = ride.station_path.filter((path) => {
+  //     return path >= user.station_code;
+  //   });
 
-    let distance = stationPath[0] - user.station_code;
-    return {
-      distance: distance,
-      ...ride,
-    };
-  });
+  //   let distance = stationPath[0] - user.station_code;
+  //   return {
+  //     distance: distance,
+  //     ...ride,
+  //   };
+  // });
 
   //PAST RIDE ENDS
 
@@ -259,7 +259,43 @@ export default function Home({ rides, user }) {
   // console.log("tab", tab);
 
   useEffect(() => {
+    let date = new Date().getTime();
+    let get_pastrides = rides.filter((ride) => {
+      return new Date(ride.date).valueOf() < date;
+    });
+  
+    get_pastrides = get_pastrides.map((ride) => {
+      //removing paths that are lesser than user's station code
+      let stationPath = ride.station_path.filter((path) => {
+        return path >= user.station_code;
+      });
+  
+      let distance = stationPath[0] - user.station_code;
+      return {
+        distance: distance,
+        ...ride,
+      };
+    });
+  
     setPastrides(get_pastrides);
+
+    let get_upcomingRides = rides.filter((ride) => {
+      return new Date(ride.date).valueOf() > date;
+    });
+  
+    get_upcomingRides = get_upcomingRides.map((ride) => {
+      //removing paths that are lesser than user's station code
+      let stationPath = ride.station_path.filter((path) => {
+        return path >= user.station_code;
+      });
+  
+      let distance = stationPath[0] - user.station_code;
+      return {
+        distance: distance,
+        ...ride,
+      };
+    });
+
     setUpComing(get_upcomingRides);
   }, [rides]);
   return (
@@ -285,8 +321,6 @@ export default function Home({ rides, user }) {
         <HStack>
           <Text color="white" fontSize={"20px"} fontWeight="bold">
             {user.name}
-
-          
           </Text>
           <WrapItem>
             <Avatar size={"sm"} src={user.url} />
