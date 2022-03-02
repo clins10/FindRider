@@ -174,7 +174,7 @@ export default function Home({ rides, user }) {
     } else {
       setCity("")
       setState("")
-      setNearest(nearest);
+      setNearest(near);
       setPastrides(get_pastrides);
       setUpComing(get_upcomingRides);
     }
@@ -248,7 +248,7 @@ export default function Home({ rides, user }) {
     } else {
       setCity("")
       setState("")
-      setNearest(nearest);
+      setNearest(near);
       setPastrides(get_pastrides);
       setUpComing(get_upcomingRides);
     }
