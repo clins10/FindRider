@@ -19,10 +19,10 @@ import {
 } from "@chakra-ui/react";
 import { BiMenuAltLeft } from "react-icons/bi";
 
-import Nearest from "./components/Nearest";
-import PastRides from "./components/PastRides";
-import UpcomingRides from "./components/UpcomingRides";
-import FilterModal from "./components/FilterModal";
+import Nearest from "../components/Nearest"
+import PastRides from "../components/PastRides";
+import UpcomingRides from "../components/UpcomingRides";
+import FilterModal from "../components/FilterModal";
 import React, { useEffect, useState } from "react";
 
 export default function Home({ rides, user }) {
