@@ -119,13 +119,13 @@ export default function Home({ rides, user }) {
         // alert("got here")
         setPastrides(pasts);
       }
-      // else {
-      //   setCity(value);
-      //   let upcome = upComing.filter((ride) => {
-      //     return ride.city === value && ride.state === state;
-      //   });
-      //   setUpComing(upcome);
-      // }
+      else {
+        setCity(value);
+        let upcome = get_upcomingRides.filter((ride) => {
+          return ride.city === value && ride.state === state;
+        });
+        setUpComing(upcome);
+      }
     } else if (value.length && !state.length) {
       if (tab == "nearest") {
         setCity(value);
@@ -142,13 +142,13 @@ export default function Home({ rides, user }) {
         // alert("got here")
         setPastrides(pasts);
       }
-      // else {
-      //   setCity(value);
-      //   let upcome = upComing.filter((ride) => {
-      //     return ride.city === value;
-      //   });
-      //   setUpComing(upcome);
-      // }
+      else {
+        setCity(value);
+        let upcome = get_upcomingRides.filter((ride) => {
+          return ride.city === value;
+        });
+        setUpComing(upcome);
+      }
     } else if (!value.length && state.length) {
       if (tab == "nearest") {
         setCity("");
@@ -164,13 +164,13 @@ export default function Home({ rides, user }) {
         setPastrides(pasts);
         // alert("no city, but there is state")
       }
-      // else {
-      //   setCity("");
-      //   let upcome = upComing.filter((ride) => {
-      //     return ride.state === state;
-      //   });
-      //   setUpComing(upcome);
-      // }
+      else {
+        setCity("");
+        let upcome = get_upcomingRides.filter((ride) => {
+          return ride.state === state;
+        });
+        setUpComing(upcome);
+      }
     } else {
       setCity("")
       setState("")
@@ -197,13 +197,13 @@ export default function Home({ rides, user }) {
         });
         setPastrides(pasts);
       }
-      // else {
-      //   setState(value);
-      //   let upcome = upComing.filter((ride) => {
-      //     return ride.state === value && ride.city === city;
-      //   });
-      //   setUpComing(upcome);
-      // }
+      else {
+        setState(value);
+        let upcome = get_upcomingRides.filter((ride) => {
+          return ride.state === value && ride.city === city;
+        });
+        setUpComing(upcome);
+      }
     } else if (value.length && !city.length) {
       if (tab == "nearest") {
         setState(value);
@@ -218,13 +218,13 @@ export default function Home({ rides, user }) {
         });
         setPastrides(pasts);
       }
-      // else {
-      //   setState(value);
-      //   let upcome = upComing.filter((ride) => {
-      //     return ride.state === value;
-      //   });
-      //   setUpComing(upcome);
-      // }
+      else {
+        setState(value);
+        let upcome = get_upcomingRides.filter((ride) => {
+          return ride.state === value;
+        });
+        setUpComing(upcome);
+      }
     } else if (!value.length && city.length) {
       if (tab == "nearest") {
         setState("");
@@ -240,7 +240,7 @@ export default function Home({ rides, user }) {
         setPastrides(pasts);
       } else {
         setState("");
-        let upcome = upComing.filter((ride) => {
+        let upcome = get_upcomingRides.filter((ride) => {
           return ride.city == city;
         });
         setUpComing(upcome);
