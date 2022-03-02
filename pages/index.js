@@ -302,7 +302,7 @@ export default function Home({ rides, user }) {
                   borderBottom: "1px solid white",
                 }}
                 color={"#D0CBCB"}
-                fontSize="18px"
+                fontSize={{base: "16px", md:"18px"}}
                 fontWeight={"700"}
                 onClick={() => setTab("nearest")}
               >
@@ -315,7 +315,7 @@ export default function Home({ rides, user }) {
                   borderBottom: "1px solid white",
                 }}
                 color={"#D0CBCB"}
-                fontSize="18px"
+                fontSize={{base: "16px", md:"18px"}}
                 fontWeight={"700"}
                 onClick={() => setTab("upcoming")}
               >
@@ -328,7 +328,7 @@ export default function Home({ rides, user }) {
                   borderBottom: "1px solid white",
                 }}
                 color={"#D0CBCB"}
-                fontSize="18px"
+                fontSize={{base: "16px", md:"18px"}}
                 fontWeight={"700"}
                 onClick={() => setTab("past")}
               >

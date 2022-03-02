@@ -17,7 +17,7 @@ function Nearest({
 
   return (
     <Box p="20px" bg="#171717" mb="20px" borderRadius={"10px"}>
-      <Stack direction={["column", "row"]}>
+      <Stack  direction={["column", "row"]}>
         <Box>
           <Image w={{base: "100%"}} src={map_pc} alt="Dan Abramov" />
         </Box>
@@ -41,11 +41,7 @@ function Nearest({
                 p === path[path.length - 1] ? `${p}` : `${p}, `
               )}
               ]
-              {/* [
-              {path.map((p) =>
-                p === path[path.length - 1] ? `${p}` : `${p}, `
-              )}
-              ] */}
+           
             </Text>
           </HStack>
           <HStack mb="15px">
