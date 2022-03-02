@@ -19,7 +19,7 @@ function Nearest({
     <Box p="20px" bg="#171717" mb="20px" borderRadius={"10px"}>
       <Stack direction={["column", "row"]}>
         <Box>
-          <Image  w={{base: "100%"}} src={map_pc} alt="Dan Abramov" />
+          <Image w={{base: "100%"}} src={map_pc} alt="Dan Abramov" />
         </Box>
 
         <Box pl={{base: "0px", md: "20px"}}>

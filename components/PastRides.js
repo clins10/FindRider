@@ -14,10 +14,10 @@ function PastRides({
     <Box p="20px" bg="#171717" mb="20px" borderRadius={"10px"}>
       <Stack direction={["column", "row"]}>
         <Box>
-          <Image src={map_pc} alt="Dan Abramov" />
+          <Image  w={{base: "100%"}} src={map_pc} alt="Dan Abramov" />
         </Box>
 
-        <Box pl="20px">
+        <Box pl={{base: "0px", md: "20px"}}>
           <HStack mb="15px">
             <Text color="#CFCFCF">Rate id:</Text>
             <Text color="white">{id}</Text>
