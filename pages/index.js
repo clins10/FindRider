@@ -263,7 +263,7 @@ export default function Home({ rides, user }) {
   useEffect(() => {
     setPastrides(get_pastrides);
     setUpComing(get_upcomingRides);
-  },);
+  }, [rides]);
   return (
 
     <Box>
