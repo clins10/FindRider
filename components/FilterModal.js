@@ -8,7 +8,7 @@ import {
   Select,
   Text,
 } from "@chakra-ui/react";
-import React from "react";
+
 
 function FilterModal({
   onOpen,
@@ -20,6 +20,39 @@ function FilterModal({
   stateValue,
   cityValue,
 }) {
+
+  // const sortingCity = (a, b) => {
+  //   if (a.city < b.city) {
+  //     return -1;
+  //   }
+  //   if (a.city > b.city) {
+  //     return 1;
+  //   }
+  //   return 0;
+  // };
+
+  // const sortedCity = cities.sort(sortingCity);
+
+  // console.log("city", sortedCity);
+
+
+  const sortState = (a, b) => {
+    if (a.state < b.state) {
+      return -1;
+    }
+    if (a.state > b.state) {
+      return 1;
+    }
+    return 0;
+  };
+
+  const stateSort = rides.sort(sortState);
+  // console.log("state", stateSort);
+
+
+
+
+
   return (
     <>
       <Modal size={"xs"} isOpen={isOpen} onClose={onClose}>
@@ -39,7 +72,7 @@ function FilterModal({
               mb="10px"
               placeholder="State"
             >
-              {rides.map((ride, i) => {
+              {stateSort.map((ride, i) => {
                 return (
                   <option value={ride.state} key={i}>
                     {ride.state}
