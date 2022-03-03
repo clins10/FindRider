@@ -22,7 +22,7 @@ function Nearest({
     >
       <Box w={{base: "100%", md: "250px"}}>
         <Image
-          w={{ base: "100%"}}
+          w={"100%"}
           src={map_pc}
           alt="Dan Abramov"
         />
