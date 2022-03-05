@@ -9,7 +9,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-
+import React from "react";
 function FilterModal({
   onOpen,
   onClose,
@@ -21,20 +21,27 @@ function FilterModal({
   cityValue,
 }) {
 
-  // const sortingCity = (a, b) => {
-  //   if (a.city < b.city) {
-  //     return -1;
-  //   }
-  //   if (a.city > b.city) {
-  //     return 1;
-  //   }
-  //   return 0;
-  // };
 
-  // const sortedCity = cities.sort(sortingCity);
+  // const [rider, setRider] = React.useState(rides)
+
+  const copy1 = [...rides]
+
+  const sortingCity = (a, b) => {
+    if (a.city < b.city) {
+      return -1;
+    }
+    if (a.city > b.city) {
+      return 1;
+    }
+    return 0;
+  };
+
+  const sortedCity = copy1.sort(sortingCity);
 
   // console.log("city", sortedCity);
 
+
+  const copy2 = [...rides]
 
   const sortState = (a, b) => {
     if (a.state < b.state) {
@@ -46,7 +53,7 @@ function FilterModal({
     return 0;
   };
 
-  const stateSort = rides.sort(sortState);
+  const sortedState = copy2.sort(sortState);
   // console.log("state", stateSort);
 
 
@@ -72,7 +79,7 @@ function FilterModal({
               mb="10px"
               placeholder="State"
             >
-              {stateSort.map((ride, i) => {
+              {sortedState.map((ride, i) => {
                 return (
                   <option value={ride.state} key={i}>
                     {ride.state}
@@ -88,7 +95,7 @@ function FilterModal({
               mb="10px"
               placeholder="City"
             >
-              {rides.map((ride, i) => {
+              {sortedCity.map((ride, i) => {
                 return (
                   <option value={ride.city} color="black" key={i}>
                     {ride.city}
