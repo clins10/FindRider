@@ -19,7 +19,7 @@ import {
 } from "@chakra-ui/react";
 import { BiMenuAltLeft } from "react-icons/bi";
 
-import Nearest from "../components/Nearest"
+import Nearest from "../components/Nearest";
 import PastRides from "../components/PastRides";
 import UpcomingRides from "../components/UpcomingRides";
 import FilterModal from "../components/FilterModal";
@@ -118,8 +118,7 @@ export default function Home({ rides, user }) {
         });
         // alert("got here")
         setPastrides(pasts);
-      }
-      else {
+      } else {
         setCity(value);
         let upcome = get_upcomingRides.filter((ride) => {
           return ride.city === value && ride.state === state;
@@ -141,8 +140,7 @@ export default function Home({ rides, user }) {
         });
         // alert("got here")
         setPastrides(pasts);
-      }
-      else {
+      } else {
         setCity(value);
         let upcome = get_upcomingRides.filter((ride) => {
           return ride.city === value;
@@ -163,8 +161,7 @@ export default function Home({ rides, user }) {
         });
         setPastrides(pasts);
         // alert("no city, but there is state")
-      }
-      else {
+      } else {
         setCity("");
         let upcome = get_upcomingRides.filter((ride) => {
           return ride.state === state;
@@ -172,8 +169,8 @@ export default function Home({ rides, user }) {
         setUpComing(upcome);
       }
     } else {
-      setCity("")
-      setState("")
+      setCity("");
+      setState("");
       setNearest(near);
       setPastrides(get_pastrides);
       setUpComing(get_upcomingRides);
@@ -196,8 +193,7 @@ export default function Home({ rides, user }) {
           return ride.state == value && ride.city == city;
         });
         setPastrides(pasts);
-      }
-      else {
+      } else {
         setState(value);
         let upcome = get_upcomingRides.filter((ride) => {
           return ride.state === value && ride.city === city;
@@ -217,8 +213,7 @@ export default function Home({ rides, user }) {
           return ride.state == value;
         });
         setPastrides(pasts);
-      }
-      else {
+      } else {
         setState(value);
         let upcome = get_upcomingRides.filter((ride) => {
           return ride.state === value;
@@ -246,19 +241,18 @@ export default function Home({ rides, user }) {
         setUpComing(upcome);
       }
     } else {
-      setCity("")
-      setState("")
+      setCity("");
+      setState("");
       setNearest(near);
       setPastrides(get_pastrides);
       setUpComing(get_upcomingRides);
     }
-
   };
 
   // console.log("tab", tab);
 
   useEffect(() => {
-    setNearest(near)
+    setNearest(near);
     setPastrides(get_pastrides);
     setUpComing(get_upcomingRides);
   }, [rides]);
@@ -302,7 +296,7 @@ export default function Home({ rides, user }) {
                   borderBottom: "1px solid white",
                 }}
                 color={"#D0CBCB"}
-                fontSize={{base: "16px", md:"18px"}}
+                fontSize={{ base: "16px", md: "18px" }}
                 fontWeight={"700"}
                 onClick={() => setTab("nearest")}
               >
@@ -315,7 +309,7 @@ export default function Home({ rides, user }) {
                   borderBottom: "1px solid white",
                 }}
                 color={"#D0CBCB"}
-                fontSize={{base: "16px", md:"18px"}}
+                fontSize={{ base: "16px", md: "18px" }}
                 fontWeight={"700"}
                 onClick={() => setTab("upcoming")}
               >
@@ -328,7 +322,7 @@ export default function Home({ rides, user }) {
                   borderBottom: "1px solid white",
                 }}
                 color={"#D0CBCB"}
-                fontSize={{base: "16px", md:"18px"}}
+                fontSize={{ base: "16px", md: "18px" }}
                 fontWeight={"700"}
                 onClick={() => setTab("past")}
               >
@@ -355,16 +349,9 @@ export default function Home({ rides, user }) {
                     return (
                       <Nearest
                         key={index}
-                        id={ride.id}
-                        date={ride.date}
-                        map_pc={ride.map_url}
-                        origin_station={ride.origin_station_code}
-                        destination={ride.destination_station_code}
                         path={ride.station_path}
                         user={user}
-                        distance={ride.distance}
-                        city_name={ride.city}
-                        state_name={ride.state}
+                        ride={ride}
                       />
                     );
                   })
